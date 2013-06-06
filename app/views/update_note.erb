@@ -1,6 +1,7 @@
 <h1>Let's update a note</h1>
 
-<form action="/update_note" method="POST">
+<form action="/notes" method="POST">
+  <input type="hidden" name="_method" value="PUT">
   <input type="hidden" name="note[id]" value="<%= @note.id %>">
   <p>Note Title</p><input type="text" name="note[title]" value="<%= @note.title %>">
   <p>Note</p><p><textarea name="note[content]" rows="4" cols="50"><%= @note.content %></textarea></p>

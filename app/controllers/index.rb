@@ -1,29 +1,34 @@
 # CREATE
-post '/save_note' do
+post '/notes' do
   Note.create(params[:note])
   redirect '/'
 end
 
 # READ
-get '/' do
+get '/notes' do
   @notes = Note.all
   erb :index
 end
 
+get '/' do
+  redirect '/notes'
+end
+
 # UPDATE
-get '/update_note' do
-  @note = Note.find(params[:note]["id"])
+get '/notes/:id' do
+  @note = Note.find(params[:id])
   erb :update_note
 end
 
-post '/update_note' do
+put '/notes' do
   note = Note.find(params[:note]["id"])
   note.update_attributes(params[:note])
   redirect '/'
 end
 
 # DESTROY
-post '/delete_note' do
-  Note.delete(params[:note]["id"])
-  redirect "/"
+delete '/notes/:id' do
+  Note.destroy(params[:id]) # removes dependent objects from DB, too! learn more!
+  200
+  #redirect "/"
 end

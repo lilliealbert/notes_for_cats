@@ -12,14 +12,12 @@
       </div>
       <div id="note_content"><%= note.content %>
         <div class="button">
-          <form action="/update_note" method="GET">
-            <input type="hidden" name="note[id]" value="<%= note.id %>">
-            <input type="submit" value="Update Note">
-          </form>
-          <form action="/delete_note" method="POST">
-            <input type="hidden" name="note[id]" value="<%= note.id %>">
-            <input type="submit" value="Delete Note" class="confirm">
-          </form>
+        <button><a href="/notes/<%= note.id %>">Update Note</a></button>
+        <button id="delete"><a href="/notes/<%= note.id %>">Delete Note</a></button>
+<!--         <form action="/notes/<%= note.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete Note" class="confirm">
+        </form> -->
         </div>
       </div>
     <% end %>
