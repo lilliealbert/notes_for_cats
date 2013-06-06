@@ -1,0 +1,26 @@
+<h1>Notes for Cats</h1>
+
+<p>Finally, a note-storage application just for cats. Who can type.</p>
+
+<%= erb :form %>
+
+<div class="notes">
+  <h2>Your Notes</h2>
+    <% @notes.reverse.each do |note| %>
+      <div id="note_title">
+        <%= note.title %> 
+      </div>
+      <div id="note_content"><%= note.content %>
+        <div class="button">
+          <form action="/update_note" method="GET">
+            <input type="hidden" name="note[id]" value="<%= note.id %>">
+            <input type="submit" value="Update Note">
+          </form>
+          <form action="/delete_note" method="POST">
+            <input type="hidden" name="note[id]" value="<%= note.id %>">
+            <input type="submit" value="Delete Note">
+          </form>
+        </div>
+      </div>
+    <% end %>
+</div>
